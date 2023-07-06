@@ -72,22 +72,22 @@ $conn->close();
                 <label for="department">Department:</label>
                 <select id="department" name="department" required>
                     <option value="">Select Department</option>
-                    <option value="1">Computer Science</option>
-                    <option value="2">Information Science</option>
-                    <option value="3">Mechanical</option>
-                    <option value="4">Electronics</option>
-                    <option value="5">AIML</option>
-                    <option value="6">Data Science</option>
+                    <option value="Computer Science">Computer Science</option>
+                    <option value="Information Science">Information Science</option>
+                    <option value="Mechanical">Mechanical</option>
+                    <option value="Electronics">Electronics</option>
+                    <option value="AIML">AIML</option>
+                    <option value="Data Science">Data Science</option>
                 </select>
             </div>
             <div>
                 <label for="year">Year of Study:</label>
                 <select id="year" name="year" required>
                     <option value="">Select Year</option>
-                    <option value="1">First Year</option>
-                    <option value="2">Second Year</option>
-                    <option value="3">Third Year</option>
-                    <option value="4">Fourth Year</option>
+                    <option value="First year">First Year</option>
+                    <option value="Second year">Second Year</option>
+                    <option value="Pre-final year">Third Year</option>
+                    <option value="Final year">Fourth Year</option>
                 </select>
             </div>
             <div>

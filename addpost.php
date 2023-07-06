@@ -62,33 +62,64 @@ $conn->close();
         <div class="branding">
         <a href="#"><img class="logo" src="./icons/logo.png" alt="Logo"></a> 
         </div>
-        <div class="searchbar">
+        <!-- <div class="searchbar">
             <input class="search" placeholder="Search" type="search" name="" id="">
-        </div>
+        </div> -->
         
         <div class="iconbar">
-          <a href="addpost.php">
-            <span class="tooltip" data-tooltip="Add Post">
-              <i class="fas fa-plus icon tooltip-info" id="add_post"></i>
+
+          <div class="icon home">
+            
+            <span>
+              <a href="index.php">
+              <i class="fas fa-home"></i>
+              </a>
             </span>
-          </a>
-          <a href="classroom.php">
-            <span class="tooltip" data-tooltip="My Classroom">
-              <i class="fa-solid fa-users-rectangle icon tooltip-info"></i>
+            <div class="tooltip">
+                  Home
+            </div>
+          </div>
+
+          <div class="icon classroom">
+            
+            <span>
+              <a href="classroom.php">
+              <i class="fa-solid fa-users-rectangle icon"></i>
+              </a>
             </span>
-          </a>
-          <!-- <i class="far fa-bell icon"></i> -->
-          <a href="profile.php">
-          <span class="tooltip" data-tooltip="My Profile">
-              <img class="profile_icon tooltip-info" src="retrived.php" alt="Profile image">
-          </span>
-          </a>
-        </div>
+            <div class="tooltip">
+                  Classroom
+            </div>
+          </div>
+
+          <div class="icon profile">
+            
+            <span>
+              <a href="profile.php">
+              <i class="fas fa-user"></i>
+              </a>
+            </span>
+            <div class="tooltip">
+                  Profile
+            </div>
+          </div>
+
+          <div class="icon ">
+          <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+              <span>
+              <button type="submit" name="logout"><i class="fa-solid fa-right-from-bracket"></i></button>
+              </span>
+              <div class="tooltip">
+                    Logout
+              </div>
+            
+            </form>
+            </div>
+
+      </div>
 
  
-        <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-          <button type="submit" name="logout">Logout</button>
-        </form>
+
     </div>
 </header>
     <div class="inner-container">

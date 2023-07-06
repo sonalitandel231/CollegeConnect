@@ -52,8 +52,80 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Class Connect | Add CLass Post</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Linking fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 </head>
 <body>
+<header>
+    <div class="header_container">
+        <div class="branding">
+        <a href="#"><img class="logo" src="./icons/logo.png" alt="Logo"></a> 
+        </div>
+
+        <div class="iconbar">
+
+        <div class="icon home">
+          
+          <span>
+            <a href="index.php">
+            <i class="fas fa-home"></i>
+            </a>
+          </span>
+          <div class="tooltip">
+                Home
+          </div>
+        </div>
+
+        <div class="icon upload">
+        
+        <span>
+            <a href="upload.php">
+            <i class="fa-solid fa-upload icon"></i>
+            </a>
+        </span>
+        <div class="tooltip">
+                Upload Notes
+        </div>
+        </div>
+
+        <div class="icon notes">
+        
+        <span>
+            <a href="notes.php">
+            <i class="fa-solid fa-book icon"></i>
+            </a>
+        </span>
+        <div class="tooltip">
+                Notes
+        </div>
+        </div>
+
+        <div class="icon profile">
+        
+        <span>
+            <a href="profile.php">
+            <i class="fas fa-user"></i>
+            </a>
+        </span>
+        <div class="tooltip">
+                Profile
+        </div>
+        </div>
+
+        <div class="icon ">
+        <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+            <span>
+            <button type="submit" name="logout"><i class="fa-solid fa-right-from-bracket"></i></button>
+            </span>
+            <div class="tooltip">
+                Logout
+            </div>
+        
+        </form>
+        </div>
+    </div>
+</header>
     <div class="inner-container">
     <form id="upload_form" action="addclasspost.php" method="POST" enctype="multipart/form-data">
         <div class="post">

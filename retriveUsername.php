@@ -9,20 +9,17 @@ if (isset($_GET['id'])) {
     include 'db_connect.php';
 
     // Retrieve the profile picture of the logged-in user
-    $sql = "SELECT `Profilepic` FROM `Users` WHERE ID = '$userId'";
+    $sql = "SELECT `Username` FROM `Users` WHERE ID = '$userId'";
     $result = mysqli_query($conn, $sql);
 
     if ($result) {
         $row = mysqli_fetch_assoc($result);
-        $profilePic = $row['Profilepic'];
+        $uname = $row['Username'];
 
-        // Set the appropriate header for the image
-        header("Content-type: image/jpeg");
-
-        // Output the profile picture
-        echo $profilePic;
+        
+        echo $uname;
     } else {
-        echo "Failed to retrieve the profile picture.";
+        echo "Failed to retrieve the profile uname.";
     }
 
     mysqli_close($conn);

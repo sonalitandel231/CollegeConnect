@@ -45,7 +45,8 @@ if ($result->num_rows > 0) {
             'userid' => $userid,
             'profilePic' => $profilePic,
             'postPic' => $row['Image'],
-            'caption' => $row['Caption']
+            'caption' => $row['Caption'],
+            'postId' => $row['ID']
         );
         $posts[] = $post;
     }
@@ -53,6 +54,13 @@ if ($result->num_rows > 0) {
 
 // Close the database connection
 $conn->close();
+
+$userUname=$_SESSION['username'];
+$repUname="Ullas";
+if($userUname===$repUname){
+    $_SESSION['isrep']=true;
+}
+
 ?>
 
 
@@ -77,18 +85,80 @@ $conn->close();
         <div class="branding">
         <a href="#"><img class="logo" src="./icons/logo.png" alt="Logo"></a> 
         </div>
-        <div class="searchbar">
-            <input class="search" placeholder="Search" type="search" name="" id="">
-        </div>
+       
         <div class="iconbar">
-            <a href="index.php"><i class="fas fa-home icon"></i></a>
-            <a href="upload.php"><i class="fa-solid fa-upload icon"></i></i></a>
-            <a href="notes.php"><i class="fa-solid fa-book icon"></i></a>
-         <img class="profile_icon" src="retrived.php" alt="Profile image">
-        </div> 
+
+        <div class="iconbar">
+
+        <div class="icon home">
+        <span>
+            <a href="index.php">
+            <i class="fas fa-home"></i>
+            </a>
+        </span>
+        <div class="tooltip">
+                Home
+        </div>
+        </div>
+
+        <div class="icon addclasspost <?php echo $isRep ? 'visible' : ''; ?>">
+        <span>
+            <a href="addclasspost.php">
+            <i class="fas fa-plus" id="add_post"></i>
+            </a>
+        </span>
+        <div class="tooltip">
+                Add Post
+        </div>
+        </div>
+
+        <div class="icon upload <?php echo $isRep ? 'visible' : ''; ?>">
+        
+        <span>
+            <a href="upload.php">
+            <i class="fa-solid fa-upload icon"></i>
+            </a>
+        </span>
+        <div class="tooltip">
+                Upload Notes
+        </div>
+        </div>
+
+        <div class="icon notes">
+        
+        <span>
+            <a href="notes.php">
+            <i class="fa-solid fa-book icon"></i>
+            </a>
+        </span>
+        <div class="tooltip">
+                Notes
+        </div>
+        </div>
+
+        <div class="icon profile">
+        
+        <span>
+            <a href="profile.php">
+            <i class="fas fa-user"></i>
+            </a>
+        </span>
+        <div class="tooltip">
+                Profile
+        </div>
+        </div>
+
+        <div class="icon ">
         <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-        <button type="submit" name="logout">Logout</button>
+            <span>
+            <button type="submit" name="logout"><i class="fa-solid fa-right-from-bracket"></i></button>
+            </span>
+            <div class="tooltip">
+                Logout
+            </div>
+        
         </form>
+        </div>
     </div>
 </header>
 
@@ -116,14 +186,15 @@ $conn->close();
         '<i class="far fa-comment"></i>' .
         '<i class="far fa-thumbs-up"></i>' .
         '</div>' .
-        '<div class="rigts_i">' .
-        '<i class="fa-regular fa-bookmark"></i>' .
         '</div>' .
-        '</div>' .
-        '<div class="comment_section">' .
-        '<div class="input_box">' .
-        '<p class="inpt_c" >' . $post['caption'] .'</p>' .
-        '</div>' .
+        '<div class="comment_section">
+              <div class="input_box">
+                <input type="text" class="inpt_c comment-input" data-postid="'.$post['postId'].'" placeholder="Add a comment...">
+              </div>
+              <div class="c_txt">
+                <button class="post-comment-btn" data-postid="'.$post['postId'] .'">Post</button>
+              </div>
+            </div>' .
         '</div>';
         }
         ?>
