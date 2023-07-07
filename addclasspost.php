@@ -26,8 +26,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 
-  $stmt = $conn->prepare("INSERT INTO `CLASSPOSTS` ( `CAPTION`,`IMAGE`) VALUES (?, ?)");
-  $stmt->bind_param("ss", $caption,$fileData);
+  $uid=$_SESSION['userid'];
+
+  $stmt = $conn->prepare("INSERT INTO `CLASSPOSTS` ( `CAPTION`,`IMAGE`,`USERID`) VALUES (?, ?,?)");
+  $stmt->bind_param("sss", $caption,$fileData,$uid);
 
   if ($stmt->execute()) {
       header("Location: classroom.php");
@@ -60,7 +62,7 @@ $conn->close();
 <header>
     <div class="header_container">
         <div class="branding">
-        <a href="#"><img class="logo" src="./icons/logo.png" alt="Logo"></a> 
+        <a href="about.php"><img class="logo" src="./icons/logo.png" alt="Logo"></a> 
         </div>
 
         <div class="iconbar">
@@ -101,7 +103,7 @@ $conn->close();
         </div>
         </div>
 
-        <div class="icon profile">
+        <!-- <div class="icon profile">
         
         <span>
             <a href="profile.php">
@@ -111,7 +113,7 @@ $conn->close();
         <div class="tooltip">
                 Profile
         </div>
-        </div>
+        </div> -->
 
         <div class="icon ">
         <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
@@ -131,7 +133,7 @@ $conn->close();
         <div class="post">
           <div class="post_header">
             <div class="p_inner">
-              <img class="post_profile" src="retrived.php" alt="Posted Person's Profile Pic">
+              <img class="post_profile" src="retrived.php?id=<?php echo $_SESSION['userid']; ?>" alt="Posted Person's Profile Pic">
               <div class="p_name">
                 <h3><?php echo $_SESSION['username']?></h3>
               </div>

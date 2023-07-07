@@ -78,7 +78,7 @@ $conn->close();
 <header>
     <div class="header_container">
         <div class="branding">
-        <a href="#"><img class="logo" src="./icons/logo.png" alt="Logo"></a> 
+        <a href="about.php"><img class="logo" src="./icons/logo.png" alt="Logo"></a> 
         </div>
 
         <div class="iconbar">
@@ -110,12 +110,11 @@ $conn->close();
           <div class="icon profile">
             
             <span>
-              <a href="profile.php?id=<?php echo $_SESSION['userid']; ?>">
-              <i class="fas fa-user"></i>
+              <img src="retrived.php?id=<?php echo $_SESSION['userid']; ?>" class="profile_icon" alt="Profile pic">
               </a>
             </span>
             <div class="tooltip">
-                  Profile
+                  Hello <?php echo $_SESSION['username']; ?>
             </div>
           </div>
 
@@ -139,7 +138,7 @@ $conn->close();
 <div class="inner-container">
     <div class="left-section">
           <div class="post_list">
-            <?php
+          <?php
             foreach ($posts as $post) {
             $userid = $post['userid'];
             echo '<div class="post">' .
@@ -159,7 +158,9 @@ $conn->close();
                 <i class="far fa-thumbs-up" onclick="likePost(' .  $post['postId'] .')"></i>
                 <span id="like-count-'. $post['postId'] .'">'.$post['totallikes'].'</span> Likes
               </div>
-            </div>' .
+            </div>' . '<div class="p_caption">' .
+            '<p class="p_capt">' . $post['caption'] . '</p>' .
+            '</div>' .
             '<div class="comment_section">
               <div class="input_box">
                 <input type="text" class="inpt_c comment-input" data-postid="'.$post['postId'].'" placeholder="Add a comment...">
@@ -171,7 +172,7 @@ $conn->close();
             </div>';
           }
           ?>
-      </div>
+          </div>
     </div>
 
     <div class="right-section">
@@ -332,11 +333,6 @@ function displayComments(comments) {
     commentsContainer.appendChild(singleComment);
   });
 }
-
-
-
-
-
 
 </script>
 </body>

@@ -28,12 +28,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   $stmt = $conn->prepare("INSERT INTO `POSTS` ( `CAPTION`, `USERID`,`POSTPIC`) VALUES (?, ?,?)");
   $stmt->bind_param("sss", $caption, $_SESSION['userid'], $fileData);
-
-  if ($stmt->execute()) {
+  try{
+  $stmt->execute(); 
       header("Location: index.php");
-  } else {
-      echo "Error inserting the record: " . $stmt->error;
-  }
+  } catch (mysqli_sql_exception $e) {
+    if ($e->getCode() === 2020) {
+        // Packet too large error
+        echo "<script>alert('Please upload an image of size less than 1MB');</script>";
+    } else {
+        // Other database error
+        echo "<script>alert('An error occurred while processing your request. Please try again later.');</script>";
+    }
+}
 
   $stmt->close();
 } else {
@@ -60,7 +66,7 @@ $conn->close();
 <header>
     <div class="header_container">
         <div class="branding">
-        <a href="#"><img class="logo" src="./icons/logo.png" alt="Logo"></a> 
+        <a href="about.php"><img class="logo" src="./icons/logo.png" alt="Logo"></a> 
         </div>
         <!-- <div class="searchbar">
             <input class="search" placeholder="Search" type="search" name="" id="">
@@ -92,7 +98,7 @@ $conn->close();
             </div>
           </div>
 
-          <div class="icon profile">
+          <!-- <div class="icon profile">
             
             <span>
               <a href="profile.php">
@@ -102,7 +108,7 @@ $conn->close();
             <div class="tooltip">
                   Profile
             </div>
-          </div>
+          </div> -->
 
           <div class="icon ">
           <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
@@ -127,7 +133,7 @@ $conn->close();
         <div class="post">
           <div class="post_header">
             <div class="p_inner">
-              <img class="post_profile" src="retrived.php" alt="Posted Person's Profile Pic">
+              <img class="post_profile" src="retrived.php?id=<?php echo $_SESSION['userid']; ?>" alt="Posted Person's Profile Pic">
               <div class="p_name">
                 <h3><?php echo $_SESSION['username']?></h3>
               </div>

@@ -58,7 +58,7 @@ $conn->close();
 <header>
     <div class="header_container">
         <div class="branding">
-        <a href="#"><img class="logo" src="./icons/logo.png" alt="Logo"></a> 
+        <a href="about.php"><img class="logo" src="./icons/logo.png" alt="Logo"></a> 
         </div>
 
         <div class="iconbar">

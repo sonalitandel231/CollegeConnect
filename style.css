@@ -60,10 +60,11 @@ header{
 }
 
 .inner-container{
+  margin-left: auto;
+  margin-right: auto;
     width: 1210px;
     height: 100%;
     display: flex;
-    margin: auto;
     justify-content: space-between;
     flex-direction: row;
 }
@@ -73,7 +74,7 @@ header{
 
 .post{
     width: 610px;
-    height: 560px;
+    height: 600px;
     border: 0.5px solid rgba(0, 0, 0, 0.281);
     background-color: linear-gradient(315deg, #ffffff 0%, #d7e1ec 74%);
     margin-bottom: 100px !important;
@@ -149,15 +150,29 @@ header{
     margin-left: 5px;
     margin-right: 20px;
 }
+.inpt_c{
+  width: 100%;
+}
+
 .rigts_i i{
     margin-right: 10px;
 }
+
 .comment_section{
     border-top: 0.5px solid rgba(0, 0, 0, 0.281);
     padding-top: 10px;
     display: flex;
     margin-top: 20px;
     justify-content: space-between;
+}
+
+.input_box{
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    margin-top: 10px;
+    padding-right: 10px;
+    width: 100%;
 }
 
 .input_box img{
@@ -283,7 +298,7 @@ header{
   .comments-container{
     visibility:hidden;
     width: 410px;
-    height: 560px;
+    height: 600px;
     border: 0.5px solid rgba(0, 0, 0, 0.281);
     background-color: linear-gradient(315deg, #ffffff 0%, #d7e1ec 74%);
     margin-bottom: 100px !important;
@@ -340,6 +355,32 @@ header{
 
   .visible {
     visibility: visible;
+}
+
+.notes-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 100px;
+  width: 1500px;
+}
+
+.notes-card {
+  margin: 30px 20px;
+  flex: 0 0 calc(25% - 20px); /* Adjust the width of each card here */
+  max-width: calc(25% - 20px); /* Adjust the max-width of each card here */
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.811);
+  padding: 20px;
+  height: 200px;
+  background-color: #fff;
+  text-align: center;
+  font-size: larger;
+  font-weight: bold;
+}
+
+.p_caption{
+  margin:15px;
 }
   
   

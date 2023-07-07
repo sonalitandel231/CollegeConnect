@@ -27,13 +27,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Prepare and execute the SQL query
     $stmt = $conn->prepare("INSERT INTO `NOTES` (`FILE`,`TITLE`) VALUES (?,?)");
     $stmt->bind_param("ss", $pdfData,$_POST['title']);
-
-    if ($stmt->execute()) {
-      header("Location: classroom.php");
-      echo "PDF file inserted successfully.";
-    } else {
-      echo "Error inserting PDF file: " . $stmt->error;
+    try{
+      $stmt->execute();
+      header("Location: notes.php");
     }
+    catch (mysqli_sql_exception $e) {
+      if ($e->getCode() === 2006) {
+          // MySQL server has gone away or "max_allowed_packet" error
+          $errorMessage = "Please upload a smaller file";
+          echo "<script>alert('$errorMessage');</script>";
+      } else {
+          // Other database error
+          $errorMessage = 'An error occurred while processing your request. Please try again later.';
+          echo "<script>alert('$errorMessage');</script>";
+      }
+  }
     $stmt->close();
   } else {
     echo "Failed to upload PDF file.";
@@ -116,7 +124,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="post">
           <div class="post_header">
             <div class="p_inner">
-              <img class="post_profile" src="retrived.php" alt="Posted Person's Profile Pic">
+              <img class="post_profile" src="retrived.php?id=<?php echo $_SESSION['userid']; ?>" alt="Posted Person's Profile Pic">
               <div class="p_name">
                 <h3><?php echo $_SESSION['username']?></h3>
               </div>
@@ -124,11 +132,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           </div>
           <div class="p_image">
             <label for="">Choose Your PDF File</label><br><br>
-            <input type="file" id="pdf" name="pdf-file" accept=".pdf">
+            <input type="file" id="pdf" name="pdf-file" accept=".pdf" required>
           </div>
           <div class="comment_section">  
             <div class="input_box">
-              <input class="inpt_c" placeholder="Add a title..." type="text" name="title">
+              <input class="inpt_c" placeholder="Add a title..." type="text" name="title" required>
             </div>
             <button type="submit" class="c_txt" id="post_btn">Post</button>
           </div>

@@ -1,6 +1,14 @@
 <?php
 session_start();
 
+if (isset($_POST['logout'])) {
+  // Perform logout actions
+  session_unset();
+  session_destroy();
+  header("location: login.php");
+  exit;
+}
+
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
   header("location: login.php");
   exit;
@@ -31,7 +39,7 @@ $result = $stmt->get_result();
 <header>
     <div class="header_container">
         <div class="branding">
-        <a href="#"><img class="logo" src="./icons/logo.png" alt="Logo"></a> 
+        <a href="about.php"><img class="logo" src="./icons/logo.png" alt="Logo"></a> 
         </div>
 
         <div class="iconbar">
@@ -48,6 +56,18 @@ $result = $stmt->get_result();
           </div>
         </div>
 
+        <div class="icon classroom">
+            
+            <span>
+              <a href="classroom.php">
+              <i class="fa-solid fa-users-rectangle icon"></i>
+              </a>
+            </span>
+            <div class="tooltip">
+                  Classroom
+            </div>
+          </div>
+
         <div class="icon upload">
         
         <span>
@@ -60,7 +80,7 @@ $result = $stmt->get_result();
         </div>
         </div>
 
-        <div class="icon profile">
+        <!-- <div class="icon profile">
         
         <span>
             <a href="profile.php">
@@ -70,7 +90,7 @@ $result = $stmt->get_result();
         <div class="tooltip">
                 Profile
         </div>
-        </div>
+        </div> -->
 
         <div class="icon ">
         <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
@@ -88,13 +108,15 @@ $result = $stmt->get_result();
   <div class="inner-container">
     <div class="notes-container">
       <h2>Notes</h2>
-      <ul class="notes-list">
+      <div class="notes-list">
         <?php while ($row = $result->fetch_assoc()) : ?>
-          <li>
-            <a href="download.php?id=<?php echo $row['ID']; ?>"><?php echo $row['Title']; ?></a>
-          </li>
+          <div class="notes-card">
+            
+            <a href="download.php?id=<?php echo $row['ID']; ?>">Download here!<br><?php echo $row['Title']; ?></a>
+        
+          </div>
         <?php endwhile; ?>
-      </ul>
+      </div>
     </div>
   </div>
 </body>
