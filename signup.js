@@ -1,3 +1,4 @@
+// declaring and initialising variables
 let uname=document.getElementById("username");
 let pwd=document.getElementById("password");
 let email=document.getElementById("email");
@@ -38,6 +39,7 @@ signupBtn.addEventListener("click",function(event){
 }
 );
 
+// validation of password and email
 function validatePassword(password){
         const regex2 = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$/;
 
